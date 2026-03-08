@@ -2,14 +2,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios"
 import { Usercontext } from '@/context/Usercontrext';
+import { useUser } from '@clerk/nextjs';
 
 
 
 const Provider = ({children}:any) => {
-    const[userdetail,setuserdetail]=useState()
-    useEffect(()=>{
-        enteruserdata()
-    },[])
+    const[userdetail,setuserdetail]=useState(null)
+    const{isLoaded,isSignedIn}=useUser()
+   useEffect(()=>{
+  if(!isLoaded || !isSignedIn) return
+  enteruserdata()
+},[isLoaded,isSignedIn])
 
     const enteruserdata = async()=>{
         const result= await axios.post('/api/users')
