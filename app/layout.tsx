@@ -31,7 +31,7 @@ export default function RootLayout({
     
     <html lang="en" className={cn("font-sans", inter.variable)}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black`}
       >
         <ClerkProvider> <Provider> {children} </Provider>   </ClerkProvider>
       </body>

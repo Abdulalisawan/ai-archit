@@ -1,12 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { UserButton } from "@clerk/nextjs";
 import Image from "next/image";
-import Header from "./api/users/_shared/Header";
+import Header from "./_shared/Header";
+import Hero from "./_shared/Hero";
 
 export default function Home() {
   return (
     <>
     <Header></Header>
+    <Hero></Hero>
     
     </>
   );
