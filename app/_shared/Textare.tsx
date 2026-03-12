@@ -20,9 +20,10 @@ const Textare = () => {
     const[prompt,setprompt]=useState<string>()
     const[loading,setloading]=useState(false)
 
-    const{user}=useUser()
+    const{user,isLoaded}=useUser()
     const router= useRouter()
     const createproject=async()=>{
+      if(!isLoaded)return
         if(!user){
             router.push('/sign-in')
             return
@@ -31,21 +32,31 @@ const Textare = () => {
         const projectid=crypto.randomUUID()
         setloading(true)
 
-        const projectdetailsend= await axios.post('/api/project',{
+        try{
+            const projectdetailsend= await axios.post('/api/project',{
             UserInput:prompt,
              device:device,
              ProjectId:projectid
 
         })
-        setloading(false)
-        console.log(projectdetailsend.data)
+
+          console.log(projectdetailsend.data)
+        }finally{
+            setloading(false)
+            router.push("/projects/"+projectid)
+        }
+
+      
+        
+        
 
 
 
     }
     return (
-        <div className="flex bg-black max-w-[50%] gap-6 mx-auto">
-      <InputGroup>
+      <div className="w-full px-4 mt-3">
+        <div className="flex  bg-black mt-3 w-full max-w-md  mx-auto gap-6  ">
+      <InputGroup  className="w-full">
         <InputGroupTextarea
         onChange={(event)=>setprompt(event.target?.value)}
           data-slot="input-group-control"
@@ -71,6 +82,8 @@ const Textare = () => {
         </InputGroupAddon>
       </InputGroup>
     </div>
+    </div>
+    
     );
 };
 

@@ -10,7 +10,11 @@ const Provider = ({children}:any) => {
     const[userdetail,setuserdetail]=useState(null)
     const{isLoaded,isSignedIn}=useUser()
    useEffect(()=>{
-  if(!isLoaded || !isSignedIn) return
+  if(!isLoaded) return
+  if(!isSignedIn) {    
+    setuserdetail(null)
+   return
+  }
   enteruserdata()
 },[isLoaded,isSignedIn])
 
