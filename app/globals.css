@@ -173,7 +173,4 @@
   100% { transform: rotate(2deg) scale(1.05); }
 }
 
-.animate-earth{
-  animation: earthRotate 20s linear infinite alternate;
-}
 

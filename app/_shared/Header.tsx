@@ -37,6 +37,7 @@ const Header = () => {
     <SignInButton mode='modal'>
 <button
   className="
+  group
  
   flex items-center gap-2
  px-3 py-1

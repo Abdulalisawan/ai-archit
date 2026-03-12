@@ -9,7 +9,7 @@ export const usersTable = pgTable("users", {
 
 export const Projectdetail= pgTable("projectdetails",{
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  ProjectId: varchar().notNull(),
+  ProjectId: varchar().notNull().unique(),
   UserInput:varchar(),
   device:varchar(),
   CreatedOn: date().defaultNow(),
