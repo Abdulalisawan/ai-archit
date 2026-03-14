@@ -1,10 +1,14 @@
 "use client"
 import { themeNames, THEMES } from '@/hooks/Data/Themes';
+import { projecttype } from '@/type/type';
 import React, { useState } from 'react';
 
-
-const ProjectSetting = () => {
-    const [ projectname, setprojectname]=useState('')
+type props={
+    project:projecttype | undefined
+    
+}
+const ProjectSetting = ({project}:props) => {
+    const [ projectname, setprojectname]=useState(project?.projectname)
     const [ preferedtheme, setpreferedtheme]=useState(` AURORA_INK`)
     const [ usernewprompt, setusernewprompt]=useState<string>()
     return (
@@ -12,7 +16,7 @@ const ProjectSetting = () => {
            <div className='font-semibold text-xl text-white pl-1 mt-2'> <h1>Settings</h1></div>
            <div className='pl-1 mt-5'>
             <h1 className=' font-semibold'>Project name </h1>
-            <input onChange={(event)=>setprojectname(event.target?.value)} type="text" className='text-white border py-1   mt-2 pl-2 border-gray-500 rounded' placeholder='Enter your project name ' />
+            <input onChange={(event)=>setprojectname(event.target?.value)} type="text" defaultValue={projectname} className='text-white border py-1   mt-2 pl-2 border-gray-500 rounded' placeholder='Enter your project name ' />
            </div>
            <div className='pl-1 mt-5 mr-3'>
             <h1 className=' font-semibold'>Generate new screen</h1>

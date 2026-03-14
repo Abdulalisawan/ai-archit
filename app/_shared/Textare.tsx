@@ -40,10 +40,11 @@ const Textare = () => {
 
         })
 
-          console.log(projectdetailsend.data)
+      
         }finally{
             setloading(false)
             router.push("/projects/"+projectid)
+            
         }
 
       
